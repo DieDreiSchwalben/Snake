@@ -34,20 +34,6 @@ public class Snake extends JFrame implements KeyListener, Constants {
         });
     }
 
-    private class DrawCanvas extends JPanel {
-
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-
-
-            setBackground(Color.BLACK);
-            g.setColor(Color.YELLOW);    // set the drawing color
-            g.drawLine(30, 40, 100, 200);
-
-        }
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
 
