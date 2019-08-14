@@ -1,2 +1,2 @@
-# game.Snake
-Unser game.Snake
+# game.SnakeGame
+Unser game.SnakeGame

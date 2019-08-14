@@ -3,15 +3,24 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 
-public class DrawCanvas extends JPanel {
+public class DrawCanvas extends JPanel implements Constants {
 
-    @Override
-    public void paintComponent(Graphics g) {
+    private Graphics g;
+
+    public DrawCanvas(Graphics g) {
+        this.g = g;
+
         super.paintComponent(g);
 
-        setBackground(Color.BLACK);
-        g.setColor(Color.YELLOW);    // set the drawing color
-        g.drawLine(30, 40, 100, 200);
+        setBackground(Color.WHITE);
+        g.setColor(Color.RED); // set the drawing color
+        g.drawLine(0,0,40, 40);
+    }
+    //@Override
+    public void paintComponent() {
+        super.paintComponent(g);
 
+        setBackground(Color.WHITE);
+        g.setColor(Color.RED); // set the drawing color
     }
 }
