@@ -3,6 +3,10 @@ package game;
 import java.awt.*;
 
 public interface Constants {
+
+    public static final Point ORIGIN = new Point(0,20);
+    public static final int WINDOW_BAR_HEIGHT = 20;
+
     public static final int CANVAS_WIDTH = 400; // pixel
     public static final int CANVAS_HEIGHT = 400; // pixel
     public static final int DELAY = 10; // milliseconds
