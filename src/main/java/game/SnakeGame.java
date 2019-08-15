@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 
 public class SnakeGame extends JFrame implements KeyListener {
 
+    // All constants back in the main class - To be separated to where they belong
+
     public static final int WINDOW_BAR_HEIGHT = 20;
 
     public static final int CANVAS_WIDTH = 400; // pixel
@@ -75,9 +77,7 @@ public class SnakeGame extends JFrame implements KeyListener {
             System.out.println("Loop:" + l);
 
             // repaint();
-
         }
-
     }
 
     public void keyPressed(KeyEvent event) {
@@ -103,6 +103,7 @@ public class SnakeGame extends JFrame implements KeyListener {
         }
 
 
+        /* Test-Switch (to be deleted)
         switch(event.getKeyChar())  {
             case 's':
                 nextColor = Color.PINK;
@@ -111,18 +112,16 @@ public class SnakeGame extends JFrame implements KeyListener {
                     Integer[] bodypart = {COLUMN_WIDTH * i,ROW_HEIGHT * i};
                     snakeBody.add(bodypart);
                 }
-
                 break;
-
             case 'd':
                 nextColor = Color.RED;
-
                 for(int i = 3; i < 8; i++) {
                     Integer[] bodypart = {COLUMN_WIDTH * i,ROW_HEIGHT * 3};
                     snakeBody.add(bodypart);
                 }
                 break;
         }
+        */
 
         repaint();
 
