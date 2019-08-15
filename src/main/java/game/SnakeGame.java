@@ -13,12 +13,11 @@ public class SnakeGame extends JFrame implements KeyListener, Constants {
 
     private Color nextColor = Color.BLACK;
 
-    Integer[] head = {20,80};
+    // Integer[] head = {20,80};
     public List<Integer[]> snakeBody = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException {
         SnakeGame wnd = new SnakeGame();
-
     }
 
     public SnakeGame() throws InterruptedException {
@@ -33,7 +32,7 @@ public class SnakeGame extends JFrame implements KeyListener, Constants {
     public void paint(Graphics g) {
 
         // Draw grit
-        for(int i = 0; i < COLS; i++) {
+        for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLS; j++) {
                 g.drawRect(COLUMN_WIDTH * i, (ROW_HEIGHT * j) + WINDOW_BAR_HEIGHT, COLUMN_WIDTH, ROW_HEIGHT);
             }
@@ -41,7 +40,7 @@ public class SnakeGame extends JFrame implements KeyListener, Constants {
 
         boolean isHead = true;
         // Draw snake
-        g.setColor(nextColor);
+        // g.setColor(nextColor);
         for (Integer[] part : snakeBody) {
             if(isHead){
                 g.setColor(Color.RED);
@@ -59,23 +58,21 @@ public class SnakeGame extends JFrame implements KeyListener, Constants {
             TimeUnit.SECONDS.sleep(1);
             l++;
             System.out.println("Loop:" + l);
+
+            // repaint();
+
         }
+
     }
 
     public void keyPressed(KeyEvent event) {
 
         switch(event.getKeyChar())  {
-            case 'r':
-                nextColor = Color.RED;
-                break;
-            case 'b':
-                nextColor = Color.BLUE;
-                break;
             case 's':
                 nextColor = Color.PINK;
 
                 for(int i = 0; i < 4; i++) {
-                    Integer[] bodypart = {40 * i,40 * i};
+                    Integer[] bodypart = {COLUMN_WIDTH * i,ROW_HEIGHT * i};
                     snakeBody.add(bodypart);
                 }
 
@@ -85,7 +82,7 @@ public class SnakeGame extends JFrame implements KeyListener, Constants {
                 nextColor = Color.RED;
 
                 for(int i = 3; i < 8; i++) {
-                    Integer[] bodypart = {40 * i,40 * i};
+                    Integer[] bodypart = {COLUMN_WIDTH * i,ROW_HEIGHT * 3};
                     snakeBody.add(bodypart);
                 }
                 break;
