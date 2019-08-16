@@ -90,15 +90,15 @@ public class SnakeGame extends JFrame implements KeyListener {
                 break;
             case KeyEvent.VK_DOWN:
                 // handle down
-                System.out.println("up");
+                System.out.println("down");
                 break;
             case KeyEvent.VK_LEFT:
                 // handle left
-                System.out.println("up");
+                System.out.println("left");
                 break;
             case KeyEvent.VK_RIGHT :
                 // handle right
-                System.out.println("up");
+                System.out.println("right");
                 break;
         }
 
