@@ -43,14 +43,22 @@ public class SnakeGame extends JFrame implements KeyListener {
         setSize(CANVAS_WIDTH, CANVAS_HEIGHT + WINDOW_BAR_HEIGHT);
         setVisible(true);
         setResizable(false);
+        Integer[] head = {COLS/2, ROWS/2};
+        Integer[] body = {COLS/2-1, ROWS/2};
+        snakeBody.add(head);
+        snakeBody.add(body);
         gameLoop();
     }
 
     public void paint(Graphics g) {
 
+        setVisible(true);
         // Draw grit
         for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLS; j++) {
+                g.setColor(Color.WHITE);
+                g.fillRect(COLUMN_WIDTH * i, (ROW_HEIGHT * j) + WINDOW_BAR_HEIGHT, COLUMN_WIDTH, ROW_HEIGHT);
+                g.setColor(Color.BLACK);
                 g.drawRect(COLUMN_WIDTH * i, (ROW_HEIGHT * j) + WINDOW_BAR_HEIGHT, COLUMN_WIDTH, ROW_HEIGHT);
             }
         }
@@ -65,18 +73,22 @@ public class SnakeGame extends JFrame implements KeyListener {
             }else{
                 g.setColor(Color.GREEN);
             }
-            g.fillRect(part[0], part[1] + WINDOW_BAR_HEIGHT, COLUMN_WIDTH, ROW_HEIGHT);
+            g.fillRect(part[0]*COLUMN_WIDTH, part[1]*ROW_HEIGHT + WINDOW_BAR_HEIGHT, COLUMN_WIDTH, ROW_HEIGHT);
         }
     }
 
     public void gameLoop() throws InterruptedException {
         int l = 0;
         while(true) {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(1000);
             l++;
             System.out.println("Loop:" + l);
-
-            // repaint();
+            snakeBody.remove(snakeBody.size() - 1);
+            Integer[] headcut = snakeBody.get(0);
+            headcut[0] = headcut[0] + 1;
+            snakeBody.add(0, headcut);
+            System.out.println(snakeBody.size() + " / x0 (head)" +snakeBody.get(0)[0] + " / x1 (body)" + snakeBody.get(1)[0]);
+            repaint();
         }
     }
 
@@ -99,11 +111,14 @@ public class SnakeGame extends JFrame implements KeyListener {
             case KeyEvent.VK_RIGHT :
                 // handle right
                 System.out.println("right");
+            case KeyEvent.VK_P:
+                //handle "pause"
+                System.out.println("pause");
                 break;
         }
 
 
-        /* Test-Switch (to be deleted)
+
         switch(event.getKeyChar())  {
             case 's':
                 nextColor = Color.PINK;
@@ -121,9 +136,7 @@ public class SnakeGame extends JFrame implements KeyListener {
                 }
                 break;
         }
-        */
 
-        repaint();
 
     }
 
