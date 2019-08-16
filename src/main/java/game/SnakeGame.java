@@ -30,6 +30,8 @@ public class SnakeGame extends JFrame implements KeyListener {
 
     private Color nextColor = Color.BLACK;
 
+    boolean foundEgg = false;
+
     // Integer[] head = {20,80};
     public List<Integer[]> snakeBody = new ArrayList<>();
 
@@ -43,8 +45,8 @@ public class SnakeGame extends JFrame implements KeyListener {
         setSize(CANVAS_WIDTH, CANVAS_HEIGHT + WINDOW_BAR_HEIGHT);
         setVisible(true);
         setResizable(false);
-        Integer[] head = {COLS/2, ROWS/2};
-        Integer[] body = {COLS/2-1, ROWS/2};
+        Integer[] head = {1, ROWS/2};
+        Integer[] body = {0, ROWS/2};
         snakeBody.add(head);
         snakeBody.add(body);
         gameLoop();
@@ -78,16 +80,31 @@ public class SnakeGame extends JFrame implements KeyListener {
     }
 
     public void gameLoop() throws InterruptedException {
-        int l = 0;
         while(true) {
             TimeUnit.MILLISECONDS.sleep(1000);
-            l++;
-            System.out.println("Loop:" + l);
-            snakeBody.remove(snakeBody.size() - 1);
-            Integer[] headcut = snakeBody.get(0);
-            headcut[0] = headcut[0] + 1;
+
+            System.out.println("Before size=" + snakeBody.size() + " / COL (head) = " +snakeBody.get(0)[0] + " / COL (body) = " + snakeBody.get(1)[0]);
+
+            // Remove tail
+            System.out.println("Removing at: " + snakeBody.get(snakeBody.size() - 1)[0]);
+
+            if(foundEgg) {
+                snakeBody.remove(snakeBody.size() - 1);
+                foundEgg = false;
+            }
+
+            System.out.println("New size=" + snakeBody.size() + " - COL (old head -> new body) = " + snakeBody.get(0)[0]);
+
+            // Calculate and add new head
+            Integer[] headcut = {0,0};
+            headcut[0] = snakeBody.get(0)[0] + 1;
+            headcut[1] = snakeBody.get(0)[1];
+
+            // Add calculated head position
             snakeBody.add(0, headcut);
-            System.out.println(snakeBody.size() + " / x0 (head)" +snakeBody.get(0)[0] + " / x1 (body)" + snakeBody.get(1)[0]);
+            System.out.println("Added at COL: " + snakeBody.get(1)[0]);
+
+            System.out.println("After size=" + snakeBody.size() + " / COL (head) = " +snakeBody.get(0)[0] + " / COL (body) = " + snakeBody.get(1)[0]);
             repaint();
         }
     }
